@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+  <title>Frontend Mentor | Product list with cart</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      background-color: rgb(247, 230, 207);
+      width: 100%;
+      padding: 20px 0;
+    }
+    .left-column {
+      width: 70%;
+    }
+    .right-column {
+      width: 20%;
+      margin-bottom: 520px;
+    }
+    .right-column img {
+      display: block;
+      margin: 0 auto;
+    }
+    .product-list {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      margin-top: 2%;
+    }
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .product-card img {
+      width: 200px;
+      border-radius: 10%;
+    }
+    .product-card button {
+      width: fit-content;
+      margin-left: 60px;
+      margin-top: -15px;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid white;
+      background-color: white;
+      cursor: pointer;
+    }
+    .product-card p,
+    .product-card h3,
+    .product-card b p {
+      text-align: center;
+    }
+    /* Cart Styles */
+    .right-column h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .cart-items {
+      padding: 0 10px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .cart-item img {
+      width: 50px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    .cart-item span {
+      margin-right: 10px;
+    }
+    .cart-item button {
+      cursor: pointer;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .left-column, .right-column {
+        width: 90%;
+      }
+      .product-list {
+        justify-content: center;
+      }
+    }
+
+    .button {
+    padding: 10px 20px;
+    background-color: hsl(238, 29%, 16%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none;
+  }
+
+button:hover {
+  background-color: hsl(238, 29%, 12%);
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Column: Product List -->
+    <div class="left-column">
+      <h1 style="text-align: center; margin-bottom: 20px;">Desserts</h1>
+     
+      <div class="product-list">
+        <div class="product-card">
+          <img src="./assets/images/image-waffle-desktop.jpg" alt="Waffle">
+          <button onclick="addToCart(this)"> 
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Waffle</p>
+          <h3>Waffle with Berries</h3>
+          <b><p>$6.50</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-creme-brulee-desktop.jpg" alt="Crème Brûlée">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Crème Brûlée</p>
+          <h3>Vanilla Bean Crème Brûlée</h3>
+          <b><p>$7.00</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-macaron-desktop.jpg" alt="Macaron">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Macaron</p>
+          <h3>Macaron Mix of Five</h3>
+          <b><p>$7.00</p></b>
+        </div>
+      </div>
+      
+      <div class="product-list">
+        <div class="product-card">
+          <img src="./assets/images/image-tiramisu-desktop.jpg" alt="Tiramisu">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Tiramisu</p>
+          <h3>Classic Tiramisu</h3>
+          <b><p>$5.50</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-baklava-desktop.jpg" alt="Baklava">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Baklava</p>
+          <h3>Pistachio Baklava</h3>
+          <b><p>$4.00</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-meringue-desktop.jpg" alt="Pie">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Pie</p>
+          <h3>Lemon Meringue Pie</h3>
+          <b><p>$5.00</p></b>
+        </div>
+      </div>
+  
+      <div class="product-list">
+        <div class="product-card">
+          <img src="./assets/images/image-cake-desktop.jpg" alt="Cake">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Cake</p>
+          <h3>Red Velvet Cake</h3>
+          <b><p>$4.50</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-brownie-desktop.jpg" alt="Brownie">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Brownie</p>
+          <h3>Salted Caramel Brownie</h3>
+          <b><p>$4.50</p></b>
+        </div>
+        <div class="product-card">
+          <img src="./assets/images/image-panna-cotta-desktop.jpg" alt="Panna Cotta">
+          <button onclick="addToCart(this)">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="Add to cart" style="width: 20px; vertical-align: middle;"> Add To Cart
+          </button>
+          <p>Panna Cotta</p>
+          <h3>Vanilla Panna Cotta</h3>
+          <b><p>$6.50</p></b>
+        </div>
+      </div>
+    </div>
+    <!-- Right Column: Cart -->
+    <div class="right-column">
+      <h1 id="cart-title">Your Cart (0)</h1>
+      <div class="cart-items">
+        <p id="empty-cart-msg" style="text-align: center;">Your added items will appear here</p>
+        
+      </div>
+      <button class="button" onclick="confirm">Confirm</button>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+      const cart = {};
+      const cartItemsContainer = document.querySelector('.cart-items');
+      const cartTitle = document.getElementById('cart-title');
+      const emptyCartMsg = document.getElementById('empty-cart-msg');
+      
+    
+      function updateCartTitle() {
+        let total = 0;
+        for (let key in cart) {
+          total += cart[key].quantity;
+          
+        }
+        cartTitle.textContent = `Your Cart (${total})`;
+
+        if (total > 0) {
+          document.querySelector('.button').style.display = 'block';
+        } else {
+          document.querySelector('.button').style.display = 'none';
+        }
+
+
+      }
+      
+     
+      window.addToCart = function (btn) {
+        
+        const productCard = btn.parentElement;
+       
+        const productImg = productCard.querySelector('img').src;
+        const productTitle = productCard.querySelector('h3').textContent;
+        const productKey = productTitle.trim(); 
+        emptyCartMsg.style.display = 'none';
+        
+       
+        if (cart[productKey]) {
+          cart[productKey].quantity++;
+          cart[productKey].element.querySelector('.qty').textContent = cart[productKey].quantity;
+        } else {
+          
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+        
+          const img = document.createElement('img');
+          img.src = productImg;
+          
+          const titleEl = document.createElement('span');
+          titleEl.textContent = productTitle;
+          titleEl.style.flexGrow = '1';
+
+          const confirm = document.querySelector('.button');
+          confirm.addEventListener('click', function () {
+            cartItemsContainer.removeChild(cartItem);
+            delete cart[productKey];
+            emptyCartMsg.style.display = 'block';
+            updateCartTitle();
+            alert('Order confirmed!');
+          });
+
+
+         
+          const decBtn = document.createElement('button');
+          decBtn.textContent = '-';
+          decBtn.addEventListener('click', function () {
+            if (cart[productKey].quantity > 1) {
+              cart[productKey].quantity--;
+              qtySpan.textContent = cart[productKey].quantity;
+            } else {
+              cartItemsContainer.removeChild(cartItem);
+              delete cart[productKey];
+              
+              if (Object.keys(cart).length === 0) {
+                emptyCartMsg.style.display = 'block';
+                
+              }
+            }
+            updateCartTitle();
+
+
+          });
+          
+          const qtySpan = document.createElement('span');
+          qtySpan.className = 'qty';
+          qtySpan.textContent = '1';
+          qtySpan.style.margin = '0 5px';
+          
+          const incBtn = document.createElement('button');
+          incBtn.textContent = '+';
+          incBtn.addEventListener('click', function () {
+            cart[productKey].quantity++;
+            qtySpan.textContent = cart[productKey].quantity;
+            updateCartTitle();
+          });
+          
+          cartItem.appendChild(img);
+          cartItem.appendChild(titleEl);
+          cartItem.appendChild(decBtn);
+          cartItem.appendChild(qtySpan);
+          cartItem.appendChild(incBtn);
+          
+          cartItemsContainer.appendChild(cartItem);
+          cart[productKey] = {
+            quantity: 1,
+            element: cartItem
+          };
+        }
+        updateCartTitle();
+
+        
+        
+      }
+    });
+  </script>
+</body>
+</html>
