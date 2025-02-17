@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | FAQ accordion</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Background Pattern */
+    .bg-img {
+      width: 100%;
+      display: block;
+    }
+    
+    /* Banner Section */
+    .banner {
+      width: 100%;
+      height: 350px;
+      text-align: center;
+      background-color: rgb(243, 195, 243);
+      position: relative;
+    }
+    
+    /* Card Container positioned in the middle of the banner */
+    .card-container {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      
+    }
+    
+    /* Header inside the card */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+    }
+    
+    .card-header img {
+      width: 30px;
+    }
+    
+    .card-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    /* FAQ Item Styles */
+    .faq-item {
+      margin: 10px 0;
+    }
+    
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      gap: 20px;
+      cursor: pointer;
+    }
+    
+    .faq-question b p {
+      margin: 0;
+      font-weight: bold;
+    }
+    
+    .faq-question img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    .faq-answer {
+      width: 350px;
+      max-width: 100%;
+      text-align: center;
+      font-size: small;
+      display: none;
+      margin: 0 auto 10px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 300px) {
+      .banner {
+        height: auto;
+        padding: 20px 0;
+      }
+      
+      .card-container {
+        width: 90%;
+      }
+      
+      .faq-answer {
+        width: 90%;
+      }
+      
+      .card-header h1 {
+        font-size: 1.3rem;
+      }
+      
+      .faq-question b p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./assets/images/background-pattern-desktop.svg" alt="background pattern" class="bg-img">
+    <div class="banner">
+       <div class="card-container">
+          <div class="card-header">
+            <img src="./assets/images/icon-star.svg" alt="">
+            <h1>FAQs</h1>
+          </div>
+          <br>
+          <div class="faq-item">
+              <div class="faq-question">
+                <b><p>what is Frontend Mentor, and how will it help me?</p></b>
+                <img src="./assets/images/icon-plus.svg" alt="" onclick="show1()" class="plus1">
+                <img src="./assets/images/icon-minus.svg" alt="" onclick="hide1()" class="minus1" style="display: none;">
+             </div>
+             <div class="faq-answer answer1">
+                <p>Frontend Mentor is a platform offering real-world front-end coding challenges to help developers practice HTML, CSS, JavaScript, and frameworks like React.</p>
+             </div>
+          </div>
+          <div class="faq-item">
+              <div class="faq-question">
+                <b><p>what is Frontend Mentor, and how will it help me?</p></b>
+                <img src="./assets/images/icon-plus.svg" alt="" onclick="show2()" class="plus2">
+                <img src="./assets/images/icon-minus.svg" alt="" onclick="hide2()" class="minus2" style="display: none;">
+              </div>
+              <div class="faq-answer answer2">
+                <p>Frontend Mentor is a platform offering real-world front-end coding challenges to help developers practice HTML, CSS, JavaScript, and frameworks like React.</p>
+              </div>
+          </div>
+          <div class="faq-item">
+              <div class="faq-question">
+                <b><p>what is Frontend Mentor, and how will it help me?</p></b>
+                <img src="./assets/images/icon-plus.svg" alt="" onclick="show3()" class="plus3">
+                <img src="./assets/images/icon-minus.svg" alt="" onclick="hide3()" class="minus3" style="display: none;">
+              </div>
+              <div class="faq-answer answer3">
+                <p>Frontend Mentor is a platform offering real-world front-end coding challenges to help developers practice HTML, CSS, JavaScript, and frameworks like React.</p>
+              </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <script>
+    function show1(){
+      document.querySelector('.plus1').style.display = 'none';
+      document.querySelector('.minus1').style.display = 'block';
+      document.querySelector('.answer1').style.display = 'block';
+    }
+
+    function show2(){
+      document.querySelector('.plus2').style.display = 'none';
+      document.querySelector('.minus2').style.display = 'block';
+      document.querySelector('.answer2').style.display = 'block';
+    }
+
+    function show3(){
+      document.querySelector('.plus3').style.display = 'none';
+      document.querySelector('.minus3').style.display = 'block';
+      document.querySelector('.answer3').style.display = 'block';
+    }
+
+    function hide1(){
+      document.querySelector('.plus1').style.display = 'block';
+      document.querySelector('.minus1').style.display = 'none';
+      document.querySelector('.answer1').style.display = 'none';
+    }
+    function hide2(){
+      document.querySelector('.plus2').style.display = 'block';
+      document.querySelector('.minus2').style.display = 'none';
+      document.querySelector('.answer2').style.display = 'none';
+    }
+    function hide3(){
+      document.querySelector('.plus3').style.display = 'block';
+      document.querySelector('.minus3').style.display = 'none';
+      document.querySelector('.answer3').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
